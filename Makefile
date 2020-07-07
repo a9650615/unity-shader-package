@@ -1,2 +1,2 @@
 deploy:
-	git subtree push --prefix Assets/Plugins/UnityShaderPackage origin upm
+	git push origin :upm && git subtree push --prefix Packages/com.jiteng.split-package origin upm

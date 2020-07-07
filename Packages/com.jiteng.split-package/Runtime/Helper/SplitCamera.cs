@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +29,8 @@ public class SplitCamera: MonoBehaviour
         }
         else if (m_Shader == null)
         {
-            m_Shader = Shader.Find("Custom/Texture Blend");
+           AssetDatabase.ImportAsset("./SplitBlend.shader");
+           m_Shader = Shader.Find("Custom/Texture Blend");
         }
     }
 
