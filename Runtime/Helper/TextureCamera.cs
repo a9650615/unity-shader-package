@@ -1,7 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using SplitPackage.Helper;
 
 #if ENABLE_UNIVERSAL_RENDER
 using UnityEngine.Rendering.Universal;
@@ -102,7 +103,7 @@ public class TextureCamera : MonoBehaviour
         if (screenWidth != Screen.width || screenHeight != Screen.height)
         {
             Object.Destroy(texture);
-            texture = new Texture2D(source.width, source.height, TextureFormat.ARGB32, false);
+            texture = new Texture2D(source.width, source.height, RenderTextureToTexture2D.Format(source.format), false);
             texture.hideFlags = HideFlags.HideAndDontSave;
             screenWidth = Screen.width;
             screenHeight = Screen.height;
