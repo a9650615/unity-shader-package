@@ -1,7 +1,7 @@
 {
-    "name": "com.jiteng.split-package",
-    "displayName": "Jiteng split Package",
-    "version": "0.0.2",
-    "unity": "2019.3",
-    "description": "Example package for use with the Unity 2019.3 package manager."
+  "name": "com.jiteng.split-package",
+  "displayName": "Jiteng split Package",
+  "version": "0.0.3",
+  "unity": "2019.3",
+  "description": "Example package for use with the Unity 2019.3 package manager."
 }
