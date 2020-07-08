@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -78,7 +78,7 @@ public class TextureCamera : MonoBehaviour
         {
             Object.Destroy(texture);
             Destroy(source);
-            source = new RenderTexture(Screen.width, Screen.height, 32);
+            source = new RenderTexture(Screen.width, Screen.height, 24);
             texture = new Texture2D(source.width, source.height, TextureFormat.RGBA32, false);
             texture.hideFlags = HideFlags.HideAndDontSave;
             screenWidth = Screen.width;
