@@ -63,15 +63,23 @@ namespace UnityEngine.Experiemntal.Rendering.Universal
             if (destination == RenderTargetHandle.CameraTarget)
             {
                 cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
-                Blit(cmd, source, m_TemporaryColorTexture.Identifier(), blitMaterial, blitShaderPassIndex);
-                Blit(cmd, m_TemporaryColorTexture.Identifier(), source);
+                Blit(cmd, source, m_TemporaryColorTexture.Identifier());
+                Blit(cmd, m_TemporaryColorTexture.Identifier(), source, blitMaterial, blitShaderPassIndex);
+                /**
+                 * old
+                 Blit(cmd, source, m_TemporaryColorTexture.Identifier(), blitMaterial, blitShaderPassIndex);
+                 Blit(cmd, m_TemporaryColorTexture.Identifier(), source);
+                */
             }
             else
             {
                 Blit(cmd, source, destination.Identifier(), blitMaterial, blitShaderPassIndex);
             }
-
-            context.ExecuteCommandBuffer(cmd);
+            /*cmd.GetTemporaryRT(m_TemporaryColorTexture.id, opaqueDesc, filterMode);
+            Blit(cmd, source, m_TemporaryColorTexture.Identifier());
+            Blit(cmd, m_TemporaryColorTexture.Identifier(), source, blitMaterial, blitShaderPassIndex);
+            */
+                context.ExecuteCommandBuffer(cmd);
             CommandBufferPool.Release(cmd);
         }
 

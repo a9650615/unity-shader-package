@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SplitRender
   m_EditorClassIdentifier: 
   m_RendererFeatures:
-  - {fileID: 9086832083194890648}
+  - {fileID: 4267424474207146821}
+  m_RendererFeatureMap: 45d3ec12f3ef383b
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
@@ -35,7 +36,8 @@ MonoBehaviour:
     passOperation: 0
     failOperation: 0
     zFailOperation: 0
---- !u!114 &9086832083194890648
+  m_ShadowTransparentReceive: 1
+--- !u!114 &4267424474207146821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,5 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c602b5847e43946a72e5b15b201220, type: 3}
   m_Name: NewSplitRender
   m_EditorClassIdentifier: 
+  m_Active: 1
   settings:
     blitMaterial: {fileID: 0}
+    blitMaterialPassIndex: 0
