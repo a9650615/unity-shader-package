@@ -31,6 +31,7 @@ public class SplitCamera: MonoBehaviour
         {
            //AssetDatabase.ImportAsset("Packages/com.jiteng.split-package/Runtime/Helper/SplitBlend.shader");
            m_Shader = Shader.Find("Custom/Texture Blend");
+            Debug.Log(m_Shader);
         }
     }
 
@@ -48,7 +49,6 @@ public class SplitCamera: MonoBehaviour
             // tex.Apply();
             // byte[] _bytes = tex.EncodeToPNG();
             //  System.IO.File.WriteAllBytes(Application.dataPath + "./screen.png", _bytes);
-            Debug.Log("start");
             m_Material.SetTexture("_BlendTex", sec_Camera.texture);
             Graphics.Blit(source, destination, m_Material);
             // Graphics.Blit(source, destination);

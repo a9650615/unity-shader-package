@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
+#if ENABLE_UNIVERSAL_RENDER
 using UnityEngine.Rendering.Universal;
 
 namespace UnityEngine.Experiemntal.Rendering.Universal
@@ -62,3 +63,4 @@ namespace UnityEngine.Experiemntal.Rendering.Universal
         }
     }
 }
+#endif

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+
+#if ENABLE_UNIVERSAL_RENDER
 using UnityEngine.Rendering.Universal;
+#endif
 
 public class TextureCamera : MonoBehaviour
 {
@@ -23,7 +26,7 @@ public class TextureCamera : MonoBehaviour
         {
             Debug.Log("Start");
         }
-
+#if ENABLE_UNIVERSAL_RENDER
         if (GraphicsSettings.renderPipelineAsset is UniversalRenderPipelineAsset && mMaterial == null)
         {
             Debug.Log("URP");
@@ -33,44 +36,48 @@ public class TextureCamera : MonoBehaviour
             mMaterial = SplitData.material;
            
         }
+#endif
     }
 
     // Update is called once per frame
     void Update()
     {
         // RTImage(camera);
-        if (screenWidth != Screen.width || screenHeight != Screen.height)
+        if (SplitData.material)
         {
-            Object.Destroy(texture);
-            Destroy(source);
-            source = new RenderTexture(Screen.width, Screen.height, 24);
-            texture = new Texture2D(source.width, source.height, TextureFormat.RGBA32, false);
-            texture.hideFlags = HideFlags.HideAndDontSave;
-            screenWidth = Screen.width;
-            screenHeight = Screen.height;
-            camera.targetTexture = source;
-            SplitData.material.SetTexture("_BlendTex", source);
+            if (screenWidth != Screen.width || screenHeight != Screen.height)
+            {
+                Object.Destroy(texture);
+                Destroy(source);
+                source = new RenderTexture(Screen.width, Screen.height, 32);
+                texture = new Texture2D(source.width, source.height, TextureFormat.ARGB32, false);
+                texture.hideFlags = HideFlags.HideAndDontSave;
+                screenWidth = Screen.width;
+                screenHeight = Screen.height;
+                camera.targetTexture = source;
+                SplitData.material.SetTexture("_BlendTex", source);
+            }
+
+            camera.Render();
+            RenderTexture.active = source;
+            texture.Apply(false);
+            texture.ReadPixels(new Rect(0, 0, source.width, source.height), 0, 0);
+            texture.Apply();
+            // camera.targetTexture = null;
+            Graphics.CopyTexture(source, texture);
+            RenderTexture.active = null;
         }
-
-        camera.Render();
-        RenderTexture.active = source;
-        texture.Apply(false);
-        texture.ReadPixels(new Rect(0, 0, source.width, source.height), 0, 0);
-        texture.Apply();
-        // camera.targetTexture = null;
-        Graphics.CopyTexture(source, texture);
-        RenderTexture.active = null;
-
     }
 
     // SRP usage
+    /*
     Texture2D RTImage(Camera camera)
     {
         if (screenWidth != Screen.width || screenHeight != Screen.height)
         {
             Object.Destroy(texture);
             Destroy(source);
-            source = new RenderTexture(Screen.width, Screen.height, 24);
+            source = new RenderTexture(Screen.width, Screen.height, 32);
             texture = new Texture2D(source.width, source.height, TextureFormat.RGBA32, false);
             texture.hideFlags = HideFlags.HideAndDontSave;
             screenWidth = Screen.width;
@@ -88,13 +95,14 @@ public class TextureCamera : MonoBehaviour
         RenderTexture.active = null;
         return texture;
     }
+    */
 
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         if (screenWidth != Screen.width || screenHeight != Screen.height)
         {
             Object.Destroy(texture);
-            texture = new Texture2D(source.width, source.height, TextureFormat.RGBA32, false);
+            texture = new Texture2D(source.width, source.height, TextureFormat.ARGB32, false);
             texture.hideFlags = HideFlags.HideAndDontSave;
             screenWidth = Screen.width;
             screenHeight = Screen.height;
