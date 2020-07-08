@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "com.jiteng.split-package": {
+      "version": "file:com.jiteng.split-package",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.unity.assetbundlebrowser": {
+      "version": "1.7.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
@@ -23,6 +36,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.ide.visualstudio": {
+      "version": "2.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ide.vscode": {
       "version": "1.2.1",
       "depth": 0,
@@ -31,7 +51,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "7.4.1",
+      "version": "7.3.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -40,21 +60,21 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.universal": {
-      "version": "7.4.1",
+      "version": "7.3.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.4.1",
-        "com.unity.shadergraph": "7.4.1"
+        "com.unity.render-pipelines.core": "7.3.1",
+        "com.unity.shadergraph": "7.3.1"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "7.4.1",
+      "version": "7.3.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "7.4.1"
+        "com.unity.render-pipelines.core": "7.3.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -92,13 +112,6 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0"
       }
-    },
-    "com.unity.xiaomi": {
-      "version": "1.0.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

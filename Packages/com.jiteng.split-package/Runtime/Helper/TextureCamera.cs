@@ -16,7 +16,7 @@ public class TextureCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = (Camera) GetComponent(typeof(Camera));
+        camera = GetComponent<Camera>();
         gameObject.SetActive(true);
         //mMaterial = Resources.Load("Scripts/Camera/CameraMaterial.mat", typeof(Material)) as Material;
         if (mMaterial)
@@ -24,11 +24,12 @@ public class TextureCamera : MonoBehaviour
             Debug.Log("Start");
         }
 
-        if (GraphicsSettings.renderPipelineAsset is UniversalRenderPipelineAsset)
+        if (GraphicsSettings.renderPipelineAsset is UniversalRenderPipelineAsset && mMaterial == null)
         {
             Debug.Log("URP");
             // splitShader = Shader.Find("Custom/Texture Blend");
-            SplitData.material = (new Material(Shader.Find("Custom/Texture Blend")));
+            SplitData.SetMaterial((new Material(Shader.Find("Custom/Texture Blend"))));
+            // SplitData.material = CoreUtils.CreateEngineMaterial(Shader.Find("Custom/Texture Blend"));
             mMaterial = SplitData.material;
            
         }
@@ -48,7 +49,7 @@ public class TextureCamera : MonoBehaviour
             screenWidth = Screen.width;
             screenHeight = Screen.height;
             camera.targetTexture = source;
-            mMaterial.SetTexture("_BlendTex", source);
+            SplitData.material.SetTexture("_BlendTex", source);
         }
 
         camera.Render();

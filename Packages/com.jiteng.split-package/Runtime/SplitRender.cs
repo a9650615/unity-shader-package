@@ -13,6 +13,8 @@ namespace UnityEngine.Experiemntal.Rendering.Universal
             private RenderPassEvent Event = RenderPassEvent.BeforeRenderingPostProcessing;
 
             public Material blitMaterial = null;
+
+            public int blitMaterialPassIndex;
         }
 
         public BlitSettings settings = new BlitSettings();
@@ -23,12 +25,20 @@ namespace UnityEngine.Experiemntal.Rendering.Universal
         {
             if (settings.blitMaterial == null)
             {
+                /*if (SplitData.material == null)
+                {
+                    SplitData.material = CoreUtils.CreateEngineMaterial(Shader.Find("Custom/Texture Blend"));
+                }*/
                 settings.blitMaterial = SplitData.material;
             }
 
-            Debug.Log(settings.blitMaterial);
+            var passIndex = settings.blitMaterial != null ? settings.blitMaterial.passCount - 1 : 1;
+            settings.blitMaterialPassIndex = Mathf.Clamp(settings.blitMaterialPassIndex, -1, passIndex);
 
-            m_ScriptablePass = new SplitRenderPass(settings.blitMaterial, -1, name);
+            //Debug.Log(settings.blitMaterial.passCount);
+            //Debug.Log(settings.blitMaterialPassIndex);
+
+            m_ScriptablePass = new SplitRenderPass(settings.blitMaterial, passIndex - 1, name);
 
             // Configures where the render pass should be injected.
             // m_ScriptablePass.renderPassEvent = RenderPassEvent.AfterRenderingOpaques;
