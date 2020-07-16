@@ -29,8 +29,10 @@ public class SplitCamera: MonoBehaviour
         }
         else if (m_Shader == null)
         {
-           //AssetDatabase.ImportAsset("Packages/com.jiteng.split-package/Runtime/Helper/SplitBlend.shader");
-           m_Shader = Shader.Find("Custom/Texture Blend");
+            //AssetDatabase.ImportAsset("Packages/com.jiteng.split-package/Runtime/Helper/SplitBlend.shader");
+            // m_Shader = Shader.Find("Custom/Texture Blend");
+            AssetBundle ab = AssetBundle.LoadFromFile("Packages/com.jiteng.split-package/Assets/asset_data");
+            m_Shader = ab.LoadAsset<Shader>("SplitBlend.shader");
             Debug.Log(m_Shader);
         }
     }

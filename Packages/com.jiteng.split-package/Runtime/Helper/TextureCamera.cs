@@ -31,8 +31,9 @@ public class TextureCamera : MonoBehaviour
         if (GraphicsSettings.renderPipelineAsset is UniversalRenderPipelineAsset && mMaterial == null)
         {
             Debug.Log("URP");
+            AssetBundle ab = AssetBundle.LoadFromFile("Packages/com.jiteng.split-package/Assets/asset_data");
             // splitShader = Shader.Find("Custom/Texture Blend");
-            SplitData.SetMaterial((new Material(Shader.Find("Custom/Texture Blend"))));
+            SplitData.SetMaterial((new Material(ab.LoadAsset<Shader>("SplitBlend.shader"))));
             // SplitData.material = CoreUtils.CreateEngineMaterial(Shader.Find("Custom/Texture Blend"));
             mMaterial = SplitData.material;
            
